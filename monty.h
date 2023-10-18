@@ -5,6 +5,13 @@
 #include <stdlib.h>
 
 /* Structures */
+
+/**
+ * struct stack_s - Doubly linked list representation of a stack (or queue)
+ * @n: Integer value stored in the node
+ * @prev: Pointer to the previous element in the stack (or queue)
+ * @next: Pointer to the next element in the stack (or queue)
+ */
 typedef struct stack_s
 {
 	int n;
@@ -15,5 +22,6 @@ typedef struct stack_s
 /* Function Prototypes */
 void monty_push(stack_t **stack, unsigned int line_number, int value);
 void monty_pall(stack_t **stack, unsigned int line_number);
+void monty_pint(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */
