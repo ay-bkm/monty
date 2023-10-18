@@ -8,23 +8,23 @@
  */
 void monty_push(stack_t **stack, unsigned int line_number, int value)
 {
-    stack_t *new_node;
+	stack_t *new_node;
 
-    new_node = malloc(sizeof(stack_t));
-    if (!new_node)
-    {
-        dprintf(STDERR_FILENO, "Error: malloc failed\n");
-        exit(EXIT_FAILURE);
-    }
+	new_node = malloc(sizeof(stack_t));
+	if (!new_node)
+	{
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 
-    new_node->n = value;
-    new_node->prev = NULL;
-    new_node->next = *stack;
-    
-    if (*stack)
-        (*stack)->prev = new_node;
-    
-    *stack = new_node;
+	new_node->n = value;
+	new_node->prev = NULL;
+	new_node->next = *stack;
+
+	if (*stack)
+		(*stack)->prev = new_node;
+
+	*stack = new_node;
 }
 
 /**
@@ -34,13 +34,13 @@ void monty_push(stack_t **stack, unsigned int line_number, int value)
  */
 void monty_pall(stack_t **stack, unsigned int line_number)
 {
-    stack_t *current = *stack;
+	stack_t *current = *stack;
 
-    (void)line_number;
+	(void)line_number;
 
-    while (current)
-    {
-        printf("%d\n", current->n);
-        current = current->next;
-    }
+	while (current)
+	{
+		printf("%d\n", current->n);
+		current = current->next;
+	}
 }
