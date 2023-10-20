@@ -1,63 +1,60 @@
 #include "monty.h"
 
 /**
- * monty_push - Pushes an integer onto the stack.
- * @stack: A pointer to the stack.
- * @line_number: The line number in the Monty bytecode file.
- * @value: The integer to be pushed.
+ * monty_push - pushes an element to the stack
+ * @stack: double pointer to the top of the stack
+ * @line_number: value of the new element
+ * Return: nothing
  */
-void monty_push(stack_t **stack, unsigned int line_number, int value)
+void monty_push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
+    stack_t *new;
 
-	new_node = malloc(sizeof(stack_t));
-	if (!new_node)
-	{
-		dprintf(STDERR_FILENO, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-
-	new_node->n = value;
-	new_node->prev = NULL;
-	new_node->next = *stack;
-
-	if (*stack)
-		(*stack)->prev = new_node;
-
-	*stack = new_node;
+    new = malloc(sizeof(stack_t));
+    if (new == NULL)
+    {
+        fprintf(stderr, "Error: malloc failed\n");
+        exit(EXIT_FAILURE);
+    }
+    new->n = line_number;
+    new->prev = NULL;
+    new->next = *stack;
+    if (*stack != NULL)
+        (*stack)->prev = new;
+    *stack = new;
 }
 
 /**
- * monty_pall - Prints all values on the stack.
- * @stack: A pointer to the stack.
- * @line_number: The line number in the Monty bytecode file.
+ * monty_pall - prints all values on the stack starting from the top of the stack
+ * @stack: double pointer to the top of the stack
+ * @line_number: line number
+ * Return: nothing
  */
 void monty_pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current = *stack;
+    stack_t *current;
 
-	(void)line_number;
+    (void) line_number;
 
-	while (current)
-	{
-		printf("%d\n", current->n);
-		current = current->next;
-	}
+    current = *stack;
+    while (current != NULL)
+    {
+        printf("%d\n", current->n);
+        current = current->next;
+    }
 }
-
 /**
- * monty_pint - Prints the value at the top of the stack.
- * @stack: A pointer to the stack.
- * @line_number: The line number in the Monty bytecode file.
+ * monty_pint - prints the value at the top of the stack
+ * @stack: double pointer to the top of the stack
+ * @line_number: line number
+ * Return: nothing
  */
 void monty_pint(stack_t **stack, unsigned int line_number)
 {
-	if (!stack || !*stack)
-	{
-		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-
-	printf("%d\n", (*stack)->n);
+    if (*stack == NULL)
+    {
+        fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+    printf("%d\n", (*stack)->n);
 }
-

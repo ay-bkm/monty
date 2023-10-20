@@ -1,8 +1,10 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#include <stdio.h>
+#include <stdio.h> 
+#include <unistd.h>
 #include <stdlib.h>
+
 
 /* Structures */
 /**
@@ -35,7 +37,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /* Function Prototypes */
-void monty_push(stack_t **stack, unsigned int line_number, int value);
+void monty_push(stack_t **stack, unsigned int line_number);
 void monty_pall(stack_t **stack, unsigned int line_number);
 void monty_pint(stack_t **stack, unsigned int line_number);
 
