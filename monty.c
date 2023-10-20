@@ -68,15 +68,17 @@ void monty_pint(stack_t **stack, unsigned int line_number)
 
 int main(void)
 {
-	stack_t *stack = NULL;
+    stack_t *stack = NULL;
 
-	monty_push(&stack, 1);
-	monty_push(&stack, 2);
-	monty_push(&stack, 3);
+    monty_push(&stack, 1);
+    monty_push(&stack, 2);
+    monty_push(&stack, 3);
 
-	monty_pall(&stack, 0);
+    monty_pall(&stack, 0);
 
-	monty_pint(&stack, 0);
+    monty_pint(&stack, 0);
 
-	return (EXIT_SUCCESS);
+    free_stack(stack);
+
+    return (EXIT_SUCCESS);
 }
