@@ -66,10 +66,14 @@ void monty_pint(stack_t **stack, unsigned int line_number)
  * Return: void
  */
 
-int main(void)
+int main(int argc, char **argv)
 {
 	stack_t *stack = NULL;
-
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: %s file\n", argv[0]);
+		return (EXIT_FAILURE);
+	}
 	monty_push(&stack, 1);
 	monty_push(&stack, 2);
 	monty_push(&stack, 3);
